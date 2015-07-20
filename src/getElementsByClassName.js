@@ -1,10 +1,25 @@
-// If life was easy, we could just do things the easy way:
-// var getElementsByClassName = function (className) {
-//   return document.getElementsByClassName(className);
-// };
+var getElementsByClassName = function(className){
+  debugger;
+  var array = [];
+  var body = document.body;
 
-// But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-){
-  // your code here
+  var finder = function(element) {
+    if (element.classList == undefined) { 
+      return;
+    }
+    if (element.classList.contains(className) == true) {
+      array.push(element);
+      console.log(array);
+    }
+    for (var i = 0; i < element.childNodes.length; i++) {
+      debugger;
+      var tempNode = element.childNodes[i];
+      finder(tempNode);
+    }
+  };
+  finder(body);
+  return array;
 };
+
+
+console.log(getElementsByClassName("targetClassName"));
